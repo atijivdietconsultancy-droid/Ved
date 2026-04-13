@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cold Call from India — The Cheapest Way</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808;
+    --surface: #101010;
+    --card: #111111;
+    --border: #202020;
+    --border-hover: #00c8ff44;
+    --accent: #00c8ff;
+    --accent-dim: rgba(0, 200, 255, 0.08);
+    --accent-glow: rgba(0, 200, 255, 0.2);
+    --text: #ffffff;
+    --muted: #666;
+    --muted2: #999;
+    --warn: #ffb547;
+    --warn-dim: rgba(255, 181, 71, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Scanline grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle top glow */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(0,200,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+  }
+
+  /* Hero */
+  .hero {
+    text-align: left;
+    margin-bottom: 48px;
+    animation: fadeUp 0.5s ease both;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted2);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  .tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(30px, 5.5vw, 48px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    color: var(--muted2);
+    font-size: 15px;
+    max-width: 480px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .hero-meta-item span {
+    color: var(--muted2);
+  }
+
+  /* Steps */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px 26px 22px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.45s ease both;
+    transition: border-color 0.25s, background 0.25s;
+    margin-bottom: 10px;
+  }
+
+  .step:hover {
+    border-color: var(--border-hover);
+    background: #131313;
+  }
+
+  .step::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .step:hover::after { opacity: 1; }
+
+  .step:nth-child(1) { animation-delay: 0.05s; }
+  .step:nth-child(2) { animation-delay: 0.1s; }
+  .step:nth-child(3) { animation-delay: 0.15s; }
+  .step:nth-child(4) { animation-delay: 0.2s; }
+  .step:nth-child(5) { animation-delay: 0.25s; }
+  .step:nth-child(6) { animation-delay: 0.3s; }
+
+  .step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #181818;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    padding-top: 5px;
+    color: #fff;
+  }
+
+  .step-body {
+    padding-left: 46px;
+  }
+
+  .step-body p {
+    color: #b0b0b0;
+    font-size: 14.5px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .step-body p:last-child { margin-bottom: 0; }
+
+  .step-body strong {
+    color: #e8e8e8;
+    font-weight: 500;
+  }
+
+  .step-body em {
+    color: #d0d0d0;
+    font-style: italic;
+  }
+
+  /* Tip box (amber) */
+  .tip {
+    background: var(--warn-dim);
+    border: 1px solid rgba(255, 181, 71, 0.18);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .tip-icon {
+    font-size: 14px;
+    line-height: 1.7;
+    flex-shrink: 0;
+  }
+
+  .tip p {
+    color: #c9924a !important;
+    font-size: 13.5px !important;
+    margin: 0 !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Pro tip (cyan) */
+  .pro-tip {
+    background: var(--accent-dim);
+    border: 1px solid rgba(0, 200, 255, 0.15);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .pro-tip p {
+    color: #5bbfcf !important;
+    font-size: 13.5px !important;
+    margin: 0 !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Checklist */
+  .checklist {
+    list-style: none;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #b0b0b0;
+    font-size: 14.5px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .checklist li::before {
+    content: '—';
+    color: var(--accent);
+    font-weight: 400;
+    flex-shrink: 0;
+    margin-top: 1px;
+    opacity: 0.7;
+  }
+
+  /* ── FOOTER ─────────────────────────── */
+  .footer {
+    margin-top: 56px;
+    animation: fadeUp 0.45s 0.35s ease both;
+  }
+
+  .footer-inner {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card);
+    padding: 32px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footer-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00c8ff22, #00c8ff44);
+    border: 1.5px solid rgba(0,200,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .footer-info {}
+
+  .footer-handle {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+
+  .footer-bio {
+    color: var(--muted2);
+    font-size: 12.5px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .footer-cta {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 7px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .footer-cta:hover { opacity: 0.85; }
+
+  .footer-tagline {
+    color: var(--muted);
+    font-size: 11.5px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* Bottom strip */
+  .footer-strip {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-strip a {
+    color: var(--muted2);
+    text-decoration: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 520px) {
+    .step { padding: 20px 18px; }
+    .step-body { padding-left: 0; margin-top: 10px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .footer-right { align-items: flex-start; }
+    .hero { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="hero">
+    <div class="tag">Free Guide</div>
+    <h1>Cold Call from India<br><span>The Cheapest Way</span></h1>
+    <p class="hero-sub">No fancy setup. No big budget. Just you, a number, and a US prospect who actually picks up.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">📍 <span>By @findvedanth_</span></div>
+      <div class="hero-meta-item">⚡ <span>6 steps · 10 min read</span></div>
+      <div class="hero-meta-item">💸 <span>Starts at $20</span></div>
+    </div>
+  </div>
+
+  <!-- Why Twilio -->
+  <div class="step" style="margin-bottom: 10px; border-color: rgba(0,200,255,0.18);">
+    <div class="step-header">
+      <div class="step-num" style="font-size:18px; width:40px; height:40px;">🤔</div>
+      <div class="step-title">Why Twilio? (Quick Context)</div>
+    </div>
+    <div class="step-body">
+      <p>I went through a bunch of options before landing on this — Skype, CallHippo, JustCall. Here's the thing: most of them cost significantly more, and in the early stage you don't need all that extra setup and features.</p>
+      <p>Skype also doesn't exist for this use case anymore. JustCall and CallHippo are solid tools but they're priced for teams, not solo operators testing the waters. Twilio keeps it lean — pay as you go, full control, and it works.</p>
+      <div class="pro-tip">
+        <span class="tip-icon">▶️</span>
+        <p>I also went through this video which helped me set up the account — worth watching before you start: <a href="https://youtu.be/DB53tKdZLgk?si=zPAgFv_vqlMECvgH" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Watch the setup video →</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="steps">
+
+    <!-- Step 1 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">01</div>
+        <div class="step-title">Create Your Twilio Account</div>
+      </div>
+      <div class="step-body">
+        <p>Head to <strong>twilio.com</strong> and sign up. When they ask for your role, just pick <strong>Freelancer, Small Business, or Self-Employed</strong> — honestly doesn't matter much which one you choose.</p>
+        <p>Verify your email and mobile number (they'll ask for 2FA). Standard stuff, takes 2 minutes.</p>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">02</div>
+        <div class="step-title">Business Registration — No GST Needed</div>
+      </div>
+      <div class="step-body">
+        <p>Twilio asks for business verification but you <strong>don't need GST</strong> for this. Here's the hack:</p>
+        <ul class="checklist">
+          <li>Go to the <strong>Udyam Registration Portal</strong> (it's free, government site)</li>
+          <li>Register as a micro/small business — takes about 5 minutes</li>
+          <li>Download the certificate</li>
+          <li>Use this to verify your Twilio business profile ✅</li>
+        </ul>
+        <div class="pro-tip">
+          <span class="tip-icon">💡</span>
+          <p>Udyam registration is completely free and gives you a legit business document on the spot. No CA, no fees, no waiting.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">03</div>
+        <div class="step-title">Buy a Number & Set Up Billing</div>
+      </div>
+      <div class="step-body">
+        <p>Go ahead and buy a <strong>US or Canada number</strong> — local numbers work best for cold calling. Enter your card details and put in the minimum <strong>$20</strong>.</p>
+        <div class="tip">
+          <span class="tip-icon">⚠️</span>
+          <p><strong>Important:</strong> During payment, you'll see an "Auto-recharge" checkbox. Check it carefully.</p>
+        </div>
+        <div class="pro-tip">
+          <span class="tip-icon">💰</span>
+          <p>Twilio charges roughly <strong>$0.013–$0.014 per minute</strong> of call duration. Your $20 gets you a lot of dial time — just track it so you're not caught off guard.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">04</div>
+        <div class="step-title">Get a Wired Headset — Learned This the Hard Way</div>
+      </div>
+      <div class="step-body">
+        <p>Real talk — I started with Bluetooth earphones and I was getting prospects saying <em>"I can't hear what you're saying, man"</em> and hanging up. I thought it was my script. It wasn't. It was the audio.</p>
+        <p>Bluetooth adds lag, muffling, and interference. On a cold call, that kills your first impression instantly. So I searched for the best wired earphones, and picked up the <strong>Apple EarPods</strong> — clean mic, zero lag, works great.</p>
+        <ul class="checklist">
+          <li><strong>Apple EarPods (wired)</strong> — what I personally use, solid mic quality</li>
+          <li><strong>JBL Tune 310C</strong> — haven't tried it myself but looks promising from reviews</li>
+          <li><strong>Any wired headset with a good mic</strong> — the keyword is <em>wired</em></li>
+        </ul>
+        <div class="pro-tip">
+          <span class="tip-icon">🎧</span>
+          <p>Prioritise mic quality over everything. The prospect doesn't care what you look like — they care if they can hear you clearly. Wired = no excuses.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">05</div>
+        <div class="step-title">Get STIR/SHAKEN "A" Status (Anti-Spam)</div>
+      </div>
+      <div class="step-body">
+        <p>This is the most important step most people skip. If your calls are getting flagged as spam before the prospect even picks up — this is why.</p>
+        <p>Go to <strong>Monitor → Call Logs</strong> and check your STIR Status. If it's <strong>B or C</strong>, your calls are likely being marked as potential spam.</p>
+        <ul class="checklist">
+          <li>Go to <strong>Account → Trust Hub → SHAKEN/STIR Trusted Calling (Voice)</strong></li>
+          <li>Add your purchased number there</li>
+          <li>This upgrades your attestation to <strong>Level A</strong></li>
+        </ul>
+        <div class="tip">
+          <span class="tip-icon">⚠️</span>
+          <p><strong>Don't see your number to add?</strong> This happens. Check if your phone number is properly associated with your account first — go to Phone Numbers → Manage → Active Numbers and confirm it's showing up. Then try Trust Hub again.</p>
+        </div>
+        <div class="tip">
+          <span class="tip-icon">📧</span>
+          <p>Twilio support usually responds within <strong>24 hours</strong>. If you email them for verification, attach your website domain if you have one — it makes your profile look legit and speeds things up.</p>
+        </div>
+        <div class="pro-tip">
+          <span class="tip-icon">✅</span>
+          <p>Level A means your calls show up clean on the prospect's screen. No "Spam Risk" label. This alone can double your connect rate.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">06</div>
+        <div class="step-title">Set Up Your Auto Dialer</div>
+      </div>
+      <div class="step-body">
+        <p>Now plug everything together:</p>
+        <ul class="checklist">
+          <li>Install the <strong>Twilio Auto Dialer Chrome extension</strong></li>
+          <li>Enter your <strong>Account SID</strong> and <strong>Auth Token</strong> (find these on your Twilio dashboard)</li>
+          <li>Set the "From" number to your verified Level A number</li>
+        </ul>
+        <p>And that's it — you're ready to start dialing US prospects from India at a fraction of what any other setup costs.</p>
+        <div class="tip">
+          <span class="tip-icon">💳</span>
+          <p>The Twilio Auto Dialer Chrome extension has a free trial — after that it costs around <strong>₹1,300 for 3 months</strong>. Cheap enough that one booked call more than pays for it.</p>
+        </div>
+        <div class="pro-tip">
+          <span class="tip-icon">📈</span>
+          <p><strong>Best practice:</strong> Gradually increase your dials per day — don't blast 100+ calls on day one. Sudden high volume can get your number flagged as spam or trigger a Twilio account review. Start slow, ramp up over days, and protect the number you worked to get to Level A.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-avatar">V</div>
+        <div class="footer-info">
+          <div class="footer-handle">@findvedanth_</div>
+          <div class="footer-bio">21yo · Bangalore · Co-Founder @maxdmedia_<br>Building 0 → 20k$ in 90 days</div>
+        </div>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.instagram.com/findvedanth_" target="_blank" class="footer-cta">Follow on Instagram</a>
+        <div class="footer-tagline">find it yourself.</div>
+      </div>
+    </div>
+    <div class="footer-strip">
+      Made with 0 budget · shared for free · <a href="https://connectmaxdmedia.com" target="_blank">connectmaxdmedia.com</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
